@@ -144,3 +144,16 @@ export const getCategories = async () => {
 
   return result.categories;
 }
+
+// We make an HTTP request to our own next.js backend
+// we send a stringified object to our own backend
+export const submitComment = async (obj) => {
+  const result = await fetch('/api/comments' , {
+    method: 'POST',
+    body: JSON.stringify(obj),
+  });
+  return result.json();
+}
+
+// We need to create our own backend point that will accept the comment and do something with it
+// We need a backend because GraphCMS allows our own backend to interact with our service to actually submit a comment to GraphCMS. Then we will be able to see and approve/disapprove it from the GraphCMS dashboard.
