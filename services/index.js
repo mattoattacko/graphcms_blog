@@ -43,6 +43,47 @@ export const getPosts = async () => {
   return result.postsConnection.edges;
 };
 
+
+// '$slug: String!' means we are accepting a slug that will be a string
+// 'post(where: { slug: $slug })'  means we only want to get that specific article
+// 'content {raw}' gives us access to the post content
+export const getPostDetails = async (slug) => {
+  const query = gql`
+    query GetPostDetails($slug: String!) { 
+      post(where: {slug: $slug}) {
+        author {
+          bio
+          name
+          id
+          photo {
+            url
+          }
+        }
+        createdAt
+        slug
+        title
+        excerpt
+        featuredImage {
+          url
+        }
+        categories {
+          name
+          slug
+        }
+        content {
+          raw
+        }
+      }
+    }
+  `
+
+  // This fetches the posts
+  const result = await request(graphqlAPI, query, { slug });
+
+  // These are the posts
+  return result.post;
+};
+
 // Gets the newest posts as they are created
 export const getRecentPosts = async () => {
   const query = gql`
@@ -67,7 +108,7 @@ export const getRecentPosts = async () => {
 }
 
 // slug_not = dont display the current article but display other articles that display some of the categories related
-export const getSimilarPosts = async () => {
+export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {  
       posts(
@@ -83,7 +124,7 @@ export const getSimilarPosts = async () => {
       }
     }
   `
-  const result = await request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query, { slug, categories });
 
   return result.posts;
 }

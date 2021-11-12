@@ -27,7 +27,6 @@ export default function Home({ posts }) {
 
 // This is the Nextjs way to fetch data inside of our components
 // Here we fetch our posts
-
 export async function getStaticProps() {
   const posts = (await getPosts()) || [];
 
