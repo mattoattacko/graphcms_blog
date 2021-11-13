@@ -149,6 +149,9 @@ export const getCategories = async () => {
 // we send a stringified object to our own backend
 export const submitComment = async (obj) => {
   const result = await fetch('/api/comments' , {
+    headers: {
+      'Content-Type': 'application/json',
+    },
     method: 'POST',
     body: JSON.stringify(obj),
   });
