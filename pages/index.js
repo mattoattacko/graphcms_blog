@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { PostCard, Categories, PostWidget } from '../components';
 import { getPosts } from '../services';
+import { FeaturedPosts } from '../sections';
 
 // We get our posts here from the props and loop over them, passing each post one by one into the PostCard component
 export default function Home({ posts }) {
@@ -10,6 +11,7 @@ export default function Home({ posts }) {
         <title>CMS Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <FeaturedPosts />
       <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
         <div className='lg:col-span-8 col-span-1'>
           {posts.map((post) => <PostCard post={post.node} key={post.title} />)}
