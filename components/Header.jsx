@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import  { getCategories } from '../services';
 
+// import Petrolnaut from '../public/Petrolnaut.png';
+
 const Header = () => {
   const [categories, setCategories] = useState([]);
   
@@ -13,11 +15,12 @@ const Header = () => {
 
   return (
     <div className='container mx-auto px-10 mb-8'>
-      <div className='border-b w-full inline-block border-blue-400 py-8'>
+      <div className='border-b w-full inline-block border-zinc-400 py-8'>
+      {/* <img src={Petrolnaut} /> */}
         <div className='md:float-left block'>
           <Link href="/">
             <span className='cursor-pointer font-bold text-4xl text-white'>
-              petrolNotes
+              petrol_Notes
             </span>
           </Link>
         </div>
