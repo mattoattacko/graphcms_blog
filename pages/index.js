@@ -9,7 +9,7 @@ export default function Home({ posts }) {
     <div className='container mx-auto px-10 mb-8'>
       <Head>
         <title>Petrol Notes</title>
-        <link rel="icon" href='./public/turboIcons.png' />
+        <link rel="icon" href='/favicon-96x96.png' />
       </Head>
       <FeaturedPosts />
       <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
